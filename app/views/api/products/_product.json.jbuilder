@@ -3,7 +3,11 @@ json.name product.name
 json.price product.price
 json.tax product.tax
 json.total product.total
-json.image_url product.image_url
+
+json.images do
+  json.array! product.images, partial: "api/images/image", as: :image
+end
+
 json.description product.description
 json.discounted product.is_discounted?
 json.formatted do
