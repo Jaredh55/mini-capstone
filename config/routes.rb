@@ -14,4 +14,9 @@ end
     patch '/products/:id' => 'products#update'
     delete '/products/:id' => 'products#destroy'
   end
+
+  namespace :api do
+    get '/carted_products' => 'carted_products#index'
+    post '/carted_products' => 'carted_products#create'
+  end
 end

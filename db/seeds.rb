@@ -22,7 +22,40 @@
 #   {product_id: 1, url: "https://images-na.ssl-images-amazon.com/images/I/41961kFogkL._SY355_.jpg", alt: "WNYX Mug"},
 #   {product_id: 3, url: "https://www.forevergeek.com/wp-content/media/2015/11/maxresdefault-930x523.jpg", alt: "smoking lightsaber"}
 # ])
-# ProductCategory.create!([
-              
 
-#   ])
+Category.create(name: "Cheap")
+Category.create(name: "Expensive")
+Category.create(name: "Wearable")
+Category.create(name: "Weapon")
+Category.create(name: "Home Good")
+
+ProductCategory.create(category_id: 1, product_id: 1)
+ProductCategory.create(category_id: 1, product_id: 2)
+ProductCategory.create(category_id: 1, product_id: 3)
+ProductCategory.create(category_id: 2, product_id: 4)
+ProductCategory.create(category_id: 2, product_id: 5)
+ProductCategory.create(category_id: 2, product_id: 6)
+ProductCategory.create(category_id: 3, product_id: 7)
+ProductCategory.create(category_id: 3, product_id: 4)
+ProductCategory.create(category_id: 4, product_id: 1)
+ProductCategory.create(category_id: 4, product_id: 5)
+ProductCategory.create(category_id: 5, product_id: 3)
+ProductCategory.create(category_id: 5, product_id: 7)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
