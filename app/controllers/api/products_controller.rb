@@ -1,4 +1,7 @@
 class Api::ProductsController < ApplicationController
+  before_action :authenticate_admin, only: [:create, :update, :destroy]
+  #can also do "except"
+
   def index
     @products = Product.all
 
@@ -34,35 +37,43 @@ class Api::ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(
-                           name: params[:name],
-                           price: params[:price],
-                           description: params[:description],
-                           supplier_id: params[:supplier_id]
-                          )
 
-    @product.save
-    render 'show.json.jbuilder'
+      @product = Product.new(
+                             name: params[:name],
+                             price: params[:price],
+                             description: params[:description],
+                             supplier_id: params[:supplier_id]
+                            )
+
+      if @product.save
+        render 'show.json.jbuilder'
+      elsif
+        render json: {errors: @product.errors.full_messages}, status: :unprocessable_entity
+      end
   end
 
   def update
-    product_id = params[:id]
-    @product = Product.find(product_id)
 
-    @product.name = params[:name] || @product.name
-    @product.price = params[:price] || @product.price
-    @product.description = params[:description] || @product.description
-    @product.supplier_id = params[:supplier_id] || @product.supplier_id
-    
-    @product.save
-    render 'show.json.jbuilder'
+      product_id = params[:id]
+      @product = Product.find(product_id)
+
+      @product.name = params[:name] || @product.name
+      @product.price = params[:price] || @product.price
+      @product.description = params[:description] || @product.description
+      @product.supplier_id = params[:supplier_id] || @product.supplier_id
+      
+      if @product.save
+      render 'show.json.jbuilder'
+      else
+      render json: {errors: @product.errors.full_messages}, status: :unprocessable_entity
+      end
   end
 
   def destroy
-    product_id = params[:id]
-    @product = Product.find(product_id)
-    @product.destroy
-    render json: {message: "Product successfully destroyed"}
+      product_id = params[:id]
+      @product = Product.find(product_id)
+      @product.destroy
+      render json: {message: "Product successfully destroyed"}
   end
 end
 
